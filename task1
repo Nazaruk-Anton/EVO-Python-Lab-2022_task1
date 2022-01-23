@@ -1,0 +1,17 @@
+def direction(facing: str, turn: int) -> str:
+    dirs = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
+
+    if not (isinstance(facing, str) and facing in dirs) : 
+       raise ValueError("facing argument should be one of the following strings: 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'")
+
+    if not isinstance(turn, int):
+        raise ValueError("turn argument should be int of range [-1080, 1080]")
+        
+    if not -1080<=turn<=1080:
+        raise ValueError("turn argument should be int of range [-1080, 1080]")
+
+    face_idx = dirs.index(facing)
+    turns = turn / 45
+    end_idx = int((face_idx + turns) % len(dirs))
+    
+    return dirs[end_idx]
